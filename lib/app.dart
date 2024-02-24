@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dropdownfield2/dropdownfield2.dart';
 
+import 'details.dart';
+
 class App extends StatefulWidget {
   const App({super.key});
 
@@ -36,22 +38,38 @@ class _AppState extends State<App> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: <Widget>[
-                  ValueListenableBuilder(
-                      valueListenable: cityController,
-                      builder: (context, formData, _) {
-                        return Text(cityController.text);
-                      }),
-                  DropDownField(
-                      controller: cityController,
-                      value: formData['City'],
-                      icon: const Icon(Icons.location_city),
-                      required: true,
-                      labelText: 'City *',
-                      items: cities,
-                      setter: (dynamic newValue) => formData['City'] = newValue),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: DropDownField(
+                            controller: cityController,
+                            value: formData['City'],
+                            icon: const Icon(Icons.location_city),
+                            required: true,
+                            labelText: 'City *',
+                            items: cities,
+                            setter: (dynamic newValue) =>
+                                formData['City'] = newValue),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: IconButton(
+                            onPressed: () async => goToDetails(context,cityController.text),
+                            icon: const Icon(Icons.arrow_right_alt)),
+                      )
+                    ],
+                  ),
                   Divider(height: 10.0, color: Theme.of(context).primaryColor),
                 ],
               ),
             ))));
   }
+
+  void goToDetails(BuildContext context, String city) => Navigator.pushNamed(
+        context,
+        '/Details',
+        arguments: DetailsConfig(city: city),
+      );
+
 }

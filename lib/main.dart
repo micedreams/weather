@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weather_now/app.dart';
 
+import 'details.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,21 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const App(),
+       onGenerateRoute: (RouteSettings settings) => PageRouteBuilder<dynamic>(
+        settings: settings,
+        pageBuilder: (_, __, ___) {
+          return _resolveRouteWidget(settings.name, settings.arguments);
+        },
+      ),
     );
+  }
+
+  static Widget _resolveRouteWidget(String? routeName, dynamic arguments) {
+    if ('/Details' == routeName && arguments is DetailsConfig) {
+      return Details(config: arguments);
+    } else {
+      return const App();
+    }
   }
 }
 

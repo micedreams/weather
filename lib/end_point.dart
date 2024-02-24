@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
@@ -16,12 +17,18 @@ Future getWeather(
 
   try {
     final response = await http.get(url);
-    final details = City.fromJson(response.body);
 
-    return details;
+    final body = jsonDecode(response.body);
+    if (body['cod'] == 200) {
+      final details = City.fromJson(response.body);
+
+      return details;
+    } else {
+      return body['message'];
+    }
   } on SocketException {
     return 'SocketException';
   } on Exception {
-    return null;
+    return Exception;
   }
 }

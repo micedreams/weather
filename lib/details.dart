@@ -40,6 +40,13 @@ class _DetailsState extends State<Details> {
                 );
               }
 
+              if (snapshot.data is String) {
+                return ListTile(
+                  title: Text(snapshot.data),
+                  subtitle: const Text('Please try again.'),
+                );
+              }
+
               final city = snapshot.data;
 
               return RefreshIndicator(

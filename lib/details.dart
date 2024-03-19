@@ -54,19 +54,19 @@ class _DetailsState extends State<Details> {
                 child: ListView(
                   children: <Widget>[
                     ListTile(
-                      title: const Text('temperature'),
+                      title: const Text('Temperature'),
                       subtitle: Text('${city.temperature} °C'),
                     ),
                     ListTile(
-                      title: const Text('weather'),
+                      title: const Text('Weather'),
                       subtitle: Text('${city.weather}'),
                     ),
                     ListTile(
-                      title: const Text('humidity'),
+                      title: const Text('Humidity'),
                       subtitle: Text('${city.humidity} g.m-3'),
                     ),
                     ListTile(
-                      title: const Text('windSpeed'),
+                      title: const Text('WindSpeed'),
                       subtitle: Text('${city.windSpeed} km/h'),
                     ),
                   ],

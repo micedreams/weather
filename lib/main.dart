@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_now/app.dart';
 
+import 'app.dart';
 import 'details.dart';
 
 void main() {
